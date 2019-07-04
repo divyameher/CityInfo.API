@@ -17,16 +17,16 @@ namespace CityInfo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-            .AddJsonOptions(o =>
-            {
-                // If we need to send response of API's as defined in Controller instead of lowercase
-                // set Naming Strategy to null
-                // if (o.SerializerSettings.ContractResolver != null)
-                // {
-                //     var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
-                //     castedResolver.NamingStrategy = null;
-                // }
-            });
+            // .AddJsonOptions(o =>
+            // {
+            //     // If we need to send response of API's as defined in Controller instead of lowercase
+            //     // set Naming Strategy to null
+            //     if (o.SerializerSettings.ContractResolver != null)
+            //     {
+            //         var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
+            //         castedResolver.NamingStrategy = null;
+            //     }
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
