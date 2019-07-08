@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
@@ -16,6 +17,22 @@ namespace CityInfo.API
 {
     public class Startup
     {
+        // public static IConfigurationRoot Configuration;
+        public static IConfiguration Configuration;
+        public Startup(
+             // IHostingEnvironment env,
+             IConfiguration configuration)
+        {
+            // This if for ASP.Net Core < 2.2
+            // var builder = new ConfigurationBuilder()
+            // .SetBasePath(env.ContentRootPath)
+            // .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            // .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true);
+            // Configuration = builder.Build();
+
+            // For .NetCore 2.2
+            Configuration = configuration;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -35,7 +52,7 @@ namespace CityInfo.API
             //     }
             // });
 #if DEBUG
-        services.AddTransient<IMailService, LocalMailService>();
+            services.AddTransient<IMailService, LocalMailService>();
 #else
         services.AddTransient<IMailService, CloudMailService>();
 #endif
