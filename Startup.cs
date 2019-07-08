@@ -63,7 +63,7 @@ namespace CityInfo.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CityInfoContext cityInfoContext)
         {
             // These two were already added in CreateDefaultBuilder from .NetCore 2.2
             // No need to add it again
@@ -80,6 +80,7 @@ namespace CityInfo.API
             {
                 app.UseExceptionHandler();
             }
+            cityInfoContext.EnsureSeedDataForContext();
             app.UseStatusCodePages();
             app.UseMvc();
             // app.Run(async (context) =>
